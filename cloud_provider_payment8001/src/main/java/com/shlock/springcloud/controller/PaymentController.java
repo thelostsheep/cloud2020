@@ -28,7 +28,7 @@ public class PaymentController {
     //服务于服务之间远程调用，传递bean对象时，需要使用@RequestBody注解，从请求体中获取数据。
     //微服务工程的服务接口：提供是保存服务功能。
     @PostMapping("/payment/create")
-    public CommonResult<Payment> create(Payment payment){
+    public CommonResult<Payment> create(@RequestBody Payment payment){
         CommonResult<Payment> cResult = new CommonResult<>();
         try {
             int result = paymentService.create(payment);

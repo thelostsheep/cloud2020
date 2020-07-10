@@ -3,7 +3,9 @@ package com.shlock.springcloud.entities;/*
     @create date 2020-07-10 13:16    
 */
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
