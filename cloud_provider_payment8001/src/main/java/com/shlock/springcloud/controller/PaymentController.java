@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -64,7 +65,7 @@ public class PaymentController {
         return port;
     }
     @GetMapping(value = "/payment/get/{id}")
-    public CommonResult<Payment> getPaymentById(@PathVariable("id") Long id) {
+    public CommonResult<Payment> getPaymentById(@PathVariable("id") Long id){
         Payment payment = paymentService.getPaymentById(id);
         CommonResult<Payment> result = new CommonResult<Payment>();
         result.setCode(200);
@@ -72,6 +73,11 @@ public class PaymentController {
         result.setData(payment);
         System.err.println(port);
         log.debug("查询成功");
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return result ; //SpringMVC框架根据HttpMessageConverter，将Bean对象序列化为json串
     }
 }
