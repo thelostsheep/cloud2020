@@ -4,6 +4,7 @@ package com.shlock.springcloud.config;/*
 */
 
 import org.springframework.boot.SpringBootConfiguration;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
@@ -12,6 +13,7 @@ import org.springframework.web.client.RestTemplate;
 public class ApplicationContextConfig {
     //在IOC容器中声明一个bean对象
     @Bean
+//    @LoadBalanced
     public RestTemplate restTemplate(){
         return new RestTemplate();
     }

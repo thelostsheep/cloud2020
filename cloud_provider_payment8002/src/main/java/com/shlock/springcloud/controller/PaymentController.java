@@ -7,6 +7,7 @@ import com.shlock.springcloud.entities.CommonResult;
 import com.shlock.springcloud.entities.Payment;
 import com.shlock.springcloud.service.PaymentService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -24,6 +25,9 @@ import javax.annotation.Resource;
 public class PaymentController {
     @Resource
     private PaymentService paymentService;
+
+    @Value("${server.port}")
+    private String port;
 
     //服务于服务之间远程调用，传递bean对象时，需要使用@RequestBody注解，从请求体中获取数据。
     //微服务工程的服务接口：提供是保存服务功能。
@@ -55,6 +59,10 @@ public class PaymentController {
             return cResult;
         }
     }
+    @GetMapping(value = "/payment/lb")
+    public String getPaymentLB(){
+        return port;
+    }
 
     @GetMapping(value = "/payment/get/{id}")
     public CommonResult<Payment> getPaymentById(@PathVariable("id") Long id) {
@@ -63,6 +71,7 @@ public class PaymentController {
         result.setCode(200);
         result.setMessage("查询成功");
         result.setData(payment);
+        System.err.println(port);
         log.debug("查询成功");
         return result ; //SpringMVC框架根据HttpMessageConverter，将Bean对象序列化为json串
     }
