@@ -11,6 +11,11 @@
 
 	<artifactId>cloud_consumer_order80</artifactId>
 	<dependencies>
+		<!--包含了sleuth+zipkin-->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-zipkin</artifactId>
+		</dependency>
 		<dependency>
 			<artifactId>cloud_api_commons</artifactId>
 			<groupId>com.shlock.springcloud</groupId>
